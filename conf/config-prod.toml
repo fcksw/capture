@@ -1,0 +1,16 @@
+## gin
+[gin]
+prot="8085"
+
+## mysql
+[db]
+host = "127.0.0.1"
+port = 3304
+dbname = "golang"
+user = "root"
+password = "123456"
+
+## redis
+[redis]
+addr = "127.0.0.1:6379"
+db = 10
