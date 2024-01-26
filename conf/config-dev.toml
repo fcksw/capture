@@ -3,14 +3,15 @@
 prot="8085"
 
 ## mysql
-[db]
+[mysql]
 host = "127.0.0.1"
 port = 3304
 dbname = "golang"
 user = "root"
 password = "123456"
+charset= "utf8mb4"
 
 ## redis
 [redis]
-addr = "127.0.0.1:6379"
-db = 10
+Host = "127.0.0.1:6379"
+Port = 10

@@ -1,27 +1,19 @@
 package main
 
 import (
-	"capture/global"
+	"capture/initialize"
 	"capture/handler"
 	"fmt"
 	"log"
 	"net/http"
-	"os"
-
 	"github.com/gin-gonic/gin"
-	"github.com/spf13/viper"
-	"gorm.io/driver/mysql"
-	"gorm.io/gorm"
-	"gorm.io/gorm/logger"
-	"gorm.io/gorm/schema"
 )
 
-func main() {
+func main(){ 
 	//1、加载配置文件，使用viper
-	if err := InitConfig(); err != nil {
-		log.Fatal(err)
-	}
-	
+	initialize.InitResource()
+		
+
 	//2、加载 ORM, 使用gorm
 	if err := InitDb(); err != nil {
 		log.Fatal(err)
@@ -32,71 +24,6 @@ func main() {
 		log.Fatal(err)
 	}
 
-}
-
-
-
-func InitConfig () error {
-	conf := &global.Config{}
-
-	vip := viper.New()
-	vip.AddConfigPath("./conf")
-	vip.SetConfigType("toml")
-	// 环境判断
-	env := os.Getenv("capture_env")
-	if env == "" || env == "dev" {
-		// 开发环境
-		vip.SetConfigName("config-dev")
-	}
-	if env == "prod" {
-		// 生产环境
-		vip.SetConfigName("config-prod")
-	}
-
-	err := vip.ReadInConfig()
-	if  err != nil {
-		log.Printf("[config.Init] err = %v", err)
-		return err
-	}
-
-	if err := vip.Unmarshal(conf); err != nil {
-		log.Printf("[config.Init] err = %v", err)
-		return err
-	}
-	log.Printf("[config.Init] 初始化配置成功,config=%v", conf)
-	global.CaptureConfig = conf
-	return nil
-
-}
-
-
-func InitDb() error {
-
-	dbName := global.CaptureConfig.Db.DbName
-
-	dsn := fmt.Sprintf(
-		"%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
-		global.CaptureConfig.Db.User,
-		global.CaptureConfig.Db.Password,
-		global.CaptureConfig.Db.Host,
-		global.CaptureConfig.Db.Port,
-		dbName,)
-	
-	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{
-		NamingStrategy: schema.NamingStrategy{
-			// 全局禁止表名复数
-			SingularTable: true,
-		},
-		// 日志等级
-		Logger: logger.Default.LogMode(logger.Info),
-	})	
-
-	if err != nil {
-		log.Printf("[InitGorm] err = %v", err)
-		return err
-	}
-	global.DbMapper[dbName] = db
-	return nil
 }
 
 
