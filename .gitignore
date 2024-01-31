@@ -2,3 +2,5 @@
 .vscode
 
 ./capture
+
+./__debug_bin
