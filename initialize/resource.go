@@ -1,15 +1,17 @@
 package initialize
 
 import (
+	"fmt"
 	"log"
 	"os"
+
 	"github.com/spf13/viper"
 	"gorm.io/gorm"
 )
 
 
 type Config struct {
-	Gin		*Config  `json:"gin"`
+	Gin		*Gin  `json:"gin"`
 	Mysql	*Mysql   `json:"mysql"`
 	Redis	*Redis	 `json:"redis"`
 }
@@ -24,12 +26,12 @@ type Mysql struct {
 	Password string `json:"password"`
 	Host     string `json:"host"`
 	Port     int64  `json:"port"`
-	DbName   string `json:"dbNname"`
+	DbName   string `json:"dbname"`
 }
 
 
 type Redis struct {
-	Port	int64	`json:"prot"`
+	Port	int64	`json:"port"`
 	Host	string	`json:"host"`
 }
 
@@ -61,11 +63,16 @@ func InitResource() {
 		log.Printf("[config.Init] err = %v", err)
 		panic(err)
 	}
-
-	if err := vip.Unmarshal(CaptureConfig); err != nil {
+  	//2.获取所有值
+  	fmt.Println("all settings: ", vip.AllSettings())
+	
+	if err := vip.Unmarshal(&CaptureConfig); err != nil {
 		log.Printf("[config.Init] err = %v", err)
 		panic(err)
 	}
 	log.Printf("[config.Init] 初始化配置成功,config=%v", CaptureConfig)
+	log.Printf("[config.Init] 初始化配置成功,config=%v", &CaptureConfig)
+
+
 }
 

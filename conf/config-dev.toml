@@ -1,6 +1,6 @@
 ## gin
 [gin]
-prot="8085"
+port="8085"
 
 ## mysql
 [mysql]
@@ -8,10 +8,10 @@ host = "127.0.0.1"
 port = 3304
 dbname = "golang"
 user = "root"
-password = "123456"
+password = "12345"
 charset= "utf8mb4"
 
 ## redis
 [redis]
-Host = "127.0.0.1:6379"
-Port = 10
+host = "127.0.0.1"
+port = 6379
