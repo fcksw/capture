@@ -23,12 +23,6 @@ func NewUserDaoByDb(db *gorm.DB) *UserDao {
 }
 
 
-
-// func (dao *UserDao) createUser() (err error) {
-// 	dao.DB.
-// }
-
-
 func (dao *UserDao) QueryUserById(id int64) (result []*model.UserInfo, err error) {
 
 	result = make([] *model.UserInfo, 0)
