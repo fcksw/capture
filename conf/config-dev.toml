@@ -6,7 +6,7 @@ port="8085"
 [mysql]
 host = "127.0.0.1"
 port = 3304
-dbname = "golang"
+dbname = "finance"
 user = "root"
 password = "12345"
 charset= "utf8mb4"

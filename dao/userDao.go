@@ -17,6 +17,7 @@ func NewUserDao(ctx context.Context) *UserDao {
 }
 
 
+//一般应用于高级的transaction等操作 
 func NewUserDaoByDb(db *gorm.DB) *UserDao {
 	return &UserDao{db}
 }
@@ -28,8 +29,9 @@ func NewUserDaoByDb(db *gorm.DB) *UserDao {
 // }
 
 
-func (dao *UserDao) queryUserById(id int64) (result []*model.User, err error) {
-	result = make([] *model.User, 0)
-	dao.DB.Model(&model.User{}).Where("id > ",0).Find(&result)
+func (dao *UserDao) QueryUserById(id int64) (result []*model.UserInfo, err error) {
+
+	result = make([] *model.UserInfo, 0)
+	dao.DB.Model(&model.UserInfo{}).Where("id > ?",0).Find(&result)
 	return
 }

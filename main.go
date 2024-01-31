@@ -50,6 +50,10 @@ func routerInit(engin *gin.Engine) {
 	healthGroup := engin.Group("/health")
 	healthGroup.GET("", health.HealthHanler)
 
+	//user相关
+	userGroup := engin.Group("/user")
+	userGroup.GET("list", handler.ListUser)
+
 	// 账户相关
 	accountGroup := engin.Group("/account")
 	accountGroup.POST("/login", handler.Login)
