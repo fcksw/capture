@@ -2,7 +2,6 @@ package main
 
 import (
 	"capture/handler"
-	"capture/health"
 	"capture/initialize"
 	"fmt"
 	"log"

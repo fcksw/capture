@@ -1,6 +1,8 @@
 package model
 
-import "time"
+import (
+	"time"
+)
 
 
 type UserInfo struct {
@@ -27,3 +29,5 @@ type UserInfo struct {
 	CreateTime		time.Time		`gorm:"column:create_time"`
 	UpdateTime		time.Time		`gorm:"column:update_time"`
 }
+
+
