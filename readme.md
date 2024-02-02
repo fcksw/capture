@@ -13,3 +13,5 @@
 1. [github项目](https://github.com/CocaineCong/gin-mall/blob/main/repository/db/dao/user.go)
 
 2. [gorm地址](https://gorm.io/docs/dbresolver.html)
+
+3. [How to build blockchain with Go](https://blog.logrocket.com/build-blockchain-with-go/)
