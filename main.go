@@ -4,7 +4,6 @@ import (
 	"capture/handler"
 	"capture/health"
 	"capture/initialize"
-	"capture/shark"
 	"fmt"
 	"log"
 
@@ -49,12 +48,12 @@ func routerInit(engin *gin.Engine) {
 
 	//health相关
 	healthGroup := engin.Group("/health")
-	healthGroup.GET("", health.HealthHanler)
+	healthGroup.GET("", handler.HealthHanler)
 
 	//capture爬虫相关
 	captureGroup := engin.Group("/shark")
-	captureGroup.GET("/xueqiu/login", shark.Login)
-	captureGroup.GET("/xueqiu/QuoteList", shark.QuoteList)
+	captureGroup.GET("/xueqiu/login", handler.Login)
+	captureGroup.GET("/xueqiu/QuoteList", handler.QuoteList)
 
 
 	//user相关
