@@ -82,3 +82,6 @@ func routerInit(engin *gin.Engine) {
 // 		c.HTML(404, "404.html", nil)
 // 	})
 // }
+
+
+

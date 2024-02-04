@@ -19,4 +19,6 @@ type StockQuoteDailyInfo struct {
 	MarketCapital	float32			`json:"market_capital"`
 	CreatedAt		time.Time		`json:"created_at"`
 	UpdatedAt		time.Time		`json:"updated_at"`
+	// 新增时间字段，方便查询
+	TradeDate		string			`json:"trade_date"`
 }
