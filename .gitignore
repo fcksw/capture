@@ -1,6 +1,6 @@
 ### vscode
 .vscode
 
-./capture
+capture
 
-./__debug_bin
+__debug_bin
